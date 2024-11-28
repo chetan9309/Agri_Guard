@@ -42,19 +42,19 @@ void loop() {
   delay(200);
 }
 
-BLYNK_WRITE(V0) {
+BLYNK_WRITE() {
   input0 = param.asInt();
   Serial.println("blynk change V0");
   automatic(input0);
 }
 
-BLYNK_WRITE(V1) {
+BLYNK_WRITE() {
   input1 = param.asInt();
   Serial.println("blynk change V1");
   automatic(input1); 
 }
   
-void automatic(int input0){
+void automatic(){
   if (input0 == 1) {
     Serial.println(" Automatic input = 1");
     int RainValue = send_R_Sensor();
@@ -71,7 +71,7 @@ void automatic(int input0){
   }
     delay(200);
 }
-void throughBlynk(int input1) {
+void throughBlynk() {
   if (input1 == 1) {
     Serial.println("through blynk input1 = 1");
     RUN_A();
