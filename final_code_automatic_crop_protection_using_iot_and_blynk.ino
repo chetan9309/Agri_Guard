@@ -1,28 +1,18 @@
-#define BLYNK_TEMPLATE_ID "TMPL3wT0lD7Bh"
-#define BLYNK_TEMPLATE_NAME "project"
-#define BLYNK_AUTH_TOKEN "BDzGsSvOJQcRDUHDn7Qo6BZAbrwh0FP7"
-#define BLYNK_PRINT Serial
+#define BLYNK_TEMPLATE_ID "***********"
+#define BLYNK_TEMPLATE_NAME "***********"
+#define BLYNK_AUTH_TOKEN "******************************8"
 
 #include <WiFiManager.h>
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <BlynkSimpleEsp32.h>
 
-char ssid[] = "CHETAN";
-char pass[] = "123456789";
-
-#define PIN0 V0
-#define MOTOR_PIN1 V1
-#define RAIN_PIN2 V3
-#define Rain_S 32
-int IN1 = 4;
-int IN2 = 5;
-int IN3 = 18;
-int IN4 = 19;
-int IR1 =34;
-int IR2 = 35;
-int input0;
-int input1;
+int IN1 = 0;
+int IN2 = 1;
+int IN3 = 2;
+int IN4 = 3;
+int IR1 =4;
+int IR2 = 5;
 
 BLYNK_CONNECTED()
 {
@@ -94,7 +84,7 @@ void throughBlynk(int input1) {
 
 void RUN_A(){
   Serial.println("Forward");
-  if ( digitalRead(IR2) == 0 ){
+  if ( digitalRead(IR2) == 1 ){
     digitalWrite(IN1,0);digitalWrite(IN2,1); 
     digitalWrite(IN3,0);digitalWrite(IN4,1);
     Serial.println("IR2   0");
@@ -129,10 +119,8 @@ void RUN_C(){
 
 int send_R_Sensor() {
   int sensorVal = analogRead(Rain_S);
-  int percentageRain = map(sensorVal, 0, 4095, 100, 0);
   Blynk.virtualWrite(V3, percentageRain);
   Serial.println(percentageRain);
   delay(200);
   
-  return percentageRain;
 }
